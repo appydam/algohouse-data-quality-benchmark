@@ -5,6 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
+**📊 [See the live data →](https://appydam.github.io/algohouse-exchange-explorer/)**  
+Interactive dashboard with world map, sortable table, and drill-down panels for all exchanges.
+
 ---
 
 ## 🚀 Quick Start
