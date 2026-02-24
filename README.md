@@ -9,22 +9,80 @@
 
 ## 🚀 Quick Start
 
-Clone and run the benchmark in **under 10 minutes**:
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package manager)
+- No API keys required (all data sources are public)
+
+### Installation & Setup
 
 ```bash
+# 1. Clone the repository
 git clone https://github.com/appydam/algohouse-data-quality-benchmark.git
 cd algohouse-data-quality-benchmark
+
+# 2. Install dependencies
 pip install -r requirements.txt
+
+# 3. Run the demo (shows sample output in 4 seconds)
+python3 demo_run.py
+
+# 4. OR run the full benchmark with live data (5-8 minutes)
 jupyter notebook benchmark.ipynb
 ```
 
-Run all cells sequentially. The benchmark will:
-1. ✅ Fetch 1,000+ trades per exchange (10 exchanges)
-2. ✅ Run 5 quality measurements
-3. ✅ Calculate composite trust scores (0-100)
-4. ✅ Generate interactive visualizations
+### Running the Full Benchmark
+
+1. **Open Jupyter:**
+   ```bash
+   jupyter notebook benchmark.ipynb
+   ```
+
+2. **Run all cells sequentially** (Cell → Run All)
+
+3. **What it does:**
+   - ✅ Fetches 1,000+ trades per exchange (10 exchanges)
+   - ✅ Runs 5 quality measurements
+   - ✅ Calculates composite trust scores (0-100)
+   - ✅ Generates interactive visualizations
+
+4. **Output files:**
+   - `heatmap.html` - Quality metrics heatmap
+   - `scatter.html` - Trust vs. volume scatter plot
+   - `barchart.html` - Ranked trust scores bar chart
 
 **Total runtime:** ~5-8 minutes (depending on exchange API latency)
+
+### Quick Demo (No APIs, 4 seconds)
+
+Want to see sample output instantly? Run the demo script:
+
+```bash
+python3 demo_run.py
+```
+
+This generates sample output showing how the benchmark works without hitting live APIs.
+
+---
+
+## 📊 Sample Results
+
+Based on demo run (actual results will vary with live data):
+
+### Top 3 Exchanges by Trust Score:
+1. **Binance** - 94.2/100 (Grade: A+)
+2. **Coinbase** - 92.1/100 (Grade: A+)
+3. **Kraken** - 89.5/100 (Grade: A)
+
+### Exchanges Flagged for Wash Trading (Benford's Law):
+- ⚠️ **Huobi** - FAIL (p-value: 0.0300)
+- ⚠️ **MEXC** - FAIL (p-value: 0.0100)
+
+### Execution Time:
+- **Demo:** 4 seconds
+- **Live benchmark:** 5-8 minutes (depends on API latency)
+
+See full demo output in [`demo_output.txt`](demo_output.txt)
 
 ---
 
@@ -141,6 +199,17 @@ This is the **same playbook** Solidus Labs used to land Coinbase, Kraken, and Bi
 
 ---
 
+## 📋 Tracking Issues
+
+Development tracked via GitHub Issues (L1.1-L1.5):
+- [#1 - L1.1: Setup & Dependencies](https://github.com/appydam/algohouse-data-quality-benchmark/issues/1) ✅
+- [#2 - L1.2: Data Collection](https://github.com/appydam/algohouse-data-quality-benchmark/issues/2) ✅
+- [#3 - L1.3: Five Quality Measurements](https://github.com/appydam/algohouse-data-quality-benchmark/issues/3) ✅
+- [#4 - L1.4: Composite Trust Score](https://github.com/appydam/algohouse-data-quality-benchmark/issues/4) ✅
+- [#5 - L1.5: Plotly Visualizations](https://github.com/appydam/algohouse-data-quality-benchmark/issues/5) ✅
+
+---
+
 ## 🔧 Requirements
 
 **Python:** 3.8+
@@ -154,12 +223,16 @@ statsmodels>=0.13.0
 plotly>=5.0.0
 numpy>=1.21.0
 requests>=2.26.0
+jupyter>=1.0.0
+notebook>=6.4.0
 ```
 
 Install via:
 ```bash
 pip install -r requirements.txt
 ```
+
+**No API keys required** - all data sources (CCXT, AlgoHouse API, Coin Metrics Community API) are publicly accessible.
 
 ---
 
