@@ -89,6 +89,60 @@ See full demo output in [`demo_output.txt`](demo_output.txt)
 
 ---
 
+## 🔍 Wash Trading Detector (Standalone CLI Tool)
+
+Need to quickly check a specific exchange/pair for wash trading? Use the standalone detector:
+
+```bash
+python wash_detector.py --exchange binance --pair BTC/USDT --days 30 --output report.json --compare-algohouse
+```
+
+### Features:
+- **Benford's Law Test:** Chi-squared test on first-digit distribution (Nigrini 1999)
+- **Buy/Sell Symmetry:** Flags abnormal ratios (Cong et al. 2022, Yale/NBER)
+- **Volume/Depth Ratio:** Compares 24h volume to order book depth
+- **Manipulation Probability:** Weighted composite score (0-1)
+- **AlgoHouse Comparison:** Optional correlation with AlgoHouse credibility scores
+
+### Example Output:
+
+```json
+{
+  "exchange": "binance",
+  "pair": "BTC/USDT",
+  "period_days": 30,
+  "total_trades_analyzed": 45230,
+  "benfords_law": {
+    "chi_squared": 8.42,
+    "p_value": 0.3921,
+    "result": "PASS"
+  },
+  "buy_sell_symmetry": {
+    "buy_pct": 49.8,
+    "sell_pct": 50.2,
+    "result": "PASS"
+  },
+  "volume_depth_ratio": {
+    "ratio": 4.7,
+    "benchmark": "3-5x",
+    "result": "PASS"
+  },
+  "manipulation_probability": 0.05,
+  "manipulation_label": "LOW",
+  "algohouse_quality_score": 1.0,
+  "score_correlation": -0.050
+}
+```
+
+### Use Cases:
+- **Quant Traders:** Validate data quality before backtesting on a new exchange
+- **Compliance Teams:** Screen exchanges for regulatory risk (MiCA Article 76 compliance)
+- **Research:** Academic validation of Benford's Law in crypto markets
+
+See full implementation details and academic citations in [`wash_detector.py`](wash_detector.py).
+
+---
+
 ## 📊 What It Measures
 
 ### 1. **Tick Completeness**
